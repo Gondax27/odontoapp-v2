@@ -1,0 +1,11 @@
+@import 'rc-tooltip/assets/bootstrap_white.css';
+@import 'sweetalert2/dist/sweetalert2.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-image: url('./assets/app_background.png');
+  background-color: white;
+}
