@@ -1,5 +1,5 @@
 import { API_URL_SERVICES, fetchAPI } from './config';
-import type { UserBody, UserRequest } from '@/types/user';
+import type { UserBody, UserDeleted, UserRequest } from '@/types/user';
 
 const USER_TYPES_ID = {
   PATIENT: '663104cfecc90c602dbc039f',
@@ -80,6 +80,22 @@ export class UserService {
         headers: { Authorization: `Bearer ${token}` },
         method: 'PUT',
         body: JSON.stringify(newUser)
+      } as RequestInit;
+
+      const response = await fetchAPI(`${API_URL_SERVICES}/users/${userId}`, options);
+      return Promise.resolve(response?.data);
+    } catch (error) {
+      return Promise.reject(null);
+    }
+  }
+
+  static async deleteUser(userId: string): Promise<UserDeleted | null> {
+    try {
+      const token = localStorage.getItem('token') || '';
+
+      const options = {
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'DELETE'
       } as RequestInit;
 
       const response = await fetchAPI(`${API_URL_SERVICES}/users/${userId}`, options);

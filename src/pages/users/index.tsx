@@ -16,7 +16,7 @@ import PlusIcon from '@/assets/svg/PlusIcon';
 const UsersPage = () => {
   const {
     isPatient, loadingData, showAside, users, selectedUser,
-    onShowAside, handleEditUser
+    onShowAside, handleEditUser, handleDeleteUser
   } = useUsers();
 
   return (
@@ -92,7 +92,7 @@ const UsersPage = () => {
                               </button>
 
                               <button
-                                // onClick={() => handleClickEditAppointment(appointment)}
+                                onClick={() => handleDeleteUser(user?._id)}
                                 className='flex items-center p-1 text-purple-900 transition-colors border border-purple-900 rounded-md hover:bg-purple-100 hover:border-purple-700 hover:text-purple-700'
                               >
                                 <DeleteIcon className='stroke-2 size-5' />

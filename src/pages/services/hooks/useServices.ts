@@ -62,7 +62,7 @@ const useServices = () => {
    */
   function handleDeleteService(serviceId: string) {
     Swal.fire({
-      title: '¿Seguro que deseas eliminar este servicio?',
+      title: '¿Estás seguro de eliminar este servicio?',
       text: 'Esta acción no se podrá deshacer',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
@@ -90,7 +90,7 @@ const useServices = () => {
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'Ha ocurrido un error eliminando el servicio, vuelve a intentarlo'
+          text: 'Ha ocurrido un error eliminando el servicio, por favor vuelve a intentarlo'
         });
       }
     });

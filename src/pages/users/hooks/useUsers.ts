@@ -8,6 +8,7 @@ import { UserService } from '@/services/user';
 import type { UserRequest } from '@/types/user';
 
 import { REFRESH_USERS } from '@/utils/pubsub-events';
+import Swal from 'sweetalert2';
 
 const useUsers = () => {
   const [users, setUsers] = useState<UserRequest[]>([]);
@@ -32,7 +33,7 @@ const useUsers = () => {
 
     return () => {
       Pubsub.unsubscribe(REFRESH_USERS);
-    }
+    };
   }, [isPatient]);
 
   /**
@@ -47,6 +48,48 @@ const useUsers = () => {
     } finally {
       setLoadingData(false);
     }
+  }
+
+  /**
+   * Function that deletes a specific service
+   * @param userId
+   */
+  function handleDeleteUser(userId: string) {
+    if (userId === user?._id) return;
+
+    Swal.fire({
+      title: '¿Estás seguro de eliminar este usuario?',
+      text: 'Esta acción no se podrá deshacer',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, deseo eliminarlo',
+      allowOutsideClick: !Swal.isLoading(),
+      showLoaderOnConfirm: true,
+      reverseButtons: true,
+      preConfirm: async () => {
+        try {
+          await UserService.deleteUser(userId);
+          return { isSuccess: true };
+        } catch (error) {
+          return { isSuccess: false };
+        }
+      }
+    }).then((result) => {
+      if (result.value?.isSuccess) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Ok',
+          text: 'Usuario eliminado correctamente'
+        });
+        Pubsub.publish(REFRESH_USERS);
+      } else if (!result.isDismissed) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Ha ocurrido un error eliminando el usuario, por favor vuelve a intentarlo'
+        });
+      }
+    });
   }
 
   /**
@@ -77,7 +120,8 @@ const useUsers = () => {
 
     /** Functions */
     onShowAside,
-    handleEditUser
+    handleEditUser,
+    handleDeleteUser
   };
 };
 

@@ -25,3 +25,8 @@ export interface UserBody {
   phone: string;
   type: string;
 }
+
+export interface UserDeleted {
+  user_id: string;
+  user_deleted: boolean;
+}
