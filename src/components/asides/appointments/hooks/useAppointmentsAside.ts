@@ -101,7 +101,13 @@ const useAppointmentsAside = ({ selectedAppointment, onShowAside }: UseAppointme
       setLoadingRequest(true);
 
       const [date, time] = appointment.date.split('T') || '';
-      const newAppointment = { ...appointment, date, time };
+
+      const newAppointment = {
+        ...appointment,
+        date,
+        time,
+        treatment_id: appointment.treatment_id || null
+      };
 
       if (!selectedAppointment) {
         await AppointmentService.createAppointment(newAppointment);

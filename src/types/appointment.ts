@@ -20,5 +20,5 @@ export interface AppointmentRequest {
   status: string;
   patient: string;
   doctor: string;
-  treatment_id: string;
+  treatment_id: string | null;
 }

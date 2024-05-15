@@ -76,7 +76,7 @@ const AppointmentsAside = ({ selectedAppointment, onShowAside }: AppointmentsAsi
               className='w-full h-10 pl-3 text-lg rounded-md shadow-md outline-none disabled:appearance-none text-black/70 disabled:bg-white/5 disabled:opacity-100'
               onChange={handleChangeAppointment}
             >
-              <option value=''>Selecciona un Tratamiento</option>
+              <option value=''>Consulta General</option>
               {treatments.map((treatment, idx) => (
                 <option value={treatment._id} key={idx}>
                   {treatment.service._id} - {treatment.service.name}
