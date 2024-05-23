@@ -1,5 +1,1 @@
-import { AppRouter } from './routes';
-
-const App = () => <AppRouter />;
-
-export default App;
+export { AppRouter as App } from './routes';
