@@ -1,7 +1,7 @@
-import { lazy } from 'react';
+import React, { lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import LazyRoute from './components/LazyRoute';
+import LazyElement from './components/LazyElement';
 
 import { APP_PUBLIC_ROUTES, APP_PRIVATE_ROUTES } from './utils/constants';
 
@@ -26,29 +26,29 @@ const UsersPage = lazy(() => import('@/pages/users'));
 
 const router = createBrowserRouter([
   {
-    element: <LazyRoute Route={AppLayout} />,
+    element: <LazyElement Element={AppLayout} />,
     children: [
       {
         path: APP_PUBLIC_ROUTES.HOME,
-        element: <LazyRoute Route={PublicGuard} />,
+        element: <LazyElement Element={PublicGuard} />,
         children: [
-          { index: true, element: <LazyRoute Route={HomePage} /> },
-          { path: APP_PUBLIC_ROUTES.DENTALHEALTH, element: <LazyRoute Route={DentalHealthPage} /> },
-          { path: APP_PUBLIC_ROUTES.FAQ, element: <LazyRoute Route={FAQPage} /> },
-          { path: APP_PUBLIC_ROUTES.LOGIN, element: <LazyRoute Route={LoginPage} /> },
+          { index: true, element: <LazyElement Element={HomePage} /> },
+          { path: APP_PUBLIC_ROUTES.DENTALHEALTH, element: <LazyElement Element={DentalHealthPage} /> },
+          { path: APP_PUBLIC_ROUTES.FAQ, element: <LazyElement Element={FAQPage} /> },
+          { path: APP_PUBLIC_ROUTES.LOGIN, element: <LazyElement Element={LoginPage} /> },
           { path: '*', element: <h1>Page not Found</h1> }
         ]
       },
       {
         path: '/dashboard',
-        element: <LazyRoute Route={PrivateGuard} />,
+        element: <LazyElement Element={PrivateGuard} />,
         children: [
-          { index: true, element: <LazyRoute Route={DashboardHomePage} /> },
-          { path: APP_PRIVATE_ROUTES.PROFILE, element: <LazyRoute Route={ProfilePage} /> },
-          { path: APP_PRIVATE_ROUTES.APPOINTMENTS, element: <LazyRoute Route={AppointmentsPage} /> },
-          { path: APP_PRIVATE_ROUTES.TREATMENT, element: <LazyRoute Route={TreatmentsPage} /> },
-          { path: APP_PRIVATE_ROUTES.SERVICES, element: <LazyRoute Route={ServicesPage} /> },
-          { path: APP_PRIVATE_ROUTES.USERS, element: <LazyRoute Route={UsersPage} /> },
+          { index: true, element: <LazyElement Element={DashboardHomePage} /> },
+          { path: APP_PRIVATE_ROUTES.PROFILE, element: <LazyElement Element={ProfilePage} /> },
+          { path: APP_PRIVATE_ROUTES.APPOINTMENTS, element: <LazyElement Element={AppointmentsPage} /> },
+          { path: APP_PRIVATE_ROUTES.TREATMENT, element: <LazyElement Element={TreatmentsPage} /> },
+          { path: APP_PRIVATE_ROUTES.SERVICES, element: <LazyElement Element={ServicesPage} /> },
+          { path: APP_PRIVATE_ROUTES.USERS, element: <LazyElement Element={UsersPage} /> },
           { path: '*', element: <h1>Page not Found</h1> }
         ]
       }
@@ -56,4 +56,4 @@ const router = createBrowserRouter([
   }
 ]);
 
-export const AppRouter = () => <RouterProvider router={router} />;
+export const AppRouter = React.memo(() => <RouterProvider router={router} />);

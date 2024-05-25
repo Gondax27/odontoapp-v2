@@ -2,11 +2,12 @@ import Sidebar from '@/components/sidebar';
 import Spinner from '@/components/spinners';
 import TitleSection from '@/components/title-section';
 
+import AppointmentsAside from '@/components/asides/appointments';
+
 import useAppointments from './hooks/useAppointments';
 
 import EditIcon from '@/assets/svg/EditIcon';
 import PlusIcon from '@/assets/svg/PlusIcon';
-import AppointmentsAside from '@/components/asides/appointments';
 
 const AppointmentsPage = () => {
   const {

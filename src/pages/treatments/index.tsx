@@ -44,7 +44,7 @@ const TreatmentsPage = () => {
                   <th className='px-2 py-1 border border-black'>Paciente</th>
                   <th className='px-2 py-1 border border-black'>Servicio</th>
                   <th className='px-2 py-1 border border-black'>Estado</th>
-                  <th className='px-2 py-1 border border-black'>Acciones</th>
+                  {!isPatient && <th className='px-2 py-1 border border-black'>Acciones</th>}
                 </tr>
               </thead>
 
@@ -61,16 +61,18 @@ const TreatmentsPage = () => {
 
                     <td className='px-2 py-1 text-center border border-black'>{treatment.status}</td>
 
-                    <td className='px-2 py-1 border border-black'>
-                      <div className='flex items-center justify-center gap-x-4'>
-                        <button
-                          onClick={() => handleClickEditTreatment(treatment)}
-                          className='flex items-center p-1 text-purple-900 transition-colors border border-purple-900 rounded-md hover:bg-purple-100 hover:border-purple-700 hover:text-purple-700'
-                        >
-                          <EditIcon className='stroke-2 size-5' />
-                        </button>
-                      </div>
-                    </td>
+                    {!isPatient && (
+                      <td className='px-2 py-1 border border-black'>
+                        <div className='flex items-center justify-center gap-x-4'>
+                          <button
+                            onClick={() => handleClickEditTreatment(treatment)}
+                            className='flex items-center p-1 text-purple-900 transition-colors border border-purple-900 rounded-md hover:bg-purple-100 hover:border-purple-700 hover:text-purple-700'
+                          >
+                            <EditIcon className='stroke-2 size-5' />
+                          </button>
+                        </div>
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>

@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import Tooltip from 'rc-tooltip';
 
+import Spinner from '@/components/spinners';
+
 import useLogin from './hooks/useLogin';
 
 import { APP_PUBLIC_ROUTES } from '../../routes/utils/constants';
 
 import ArrowIcon from '../../assets/svg/ArrowIcon';
 import LogoApp from '../../assets/logo.png';
-import Spinner from '@/components/spinners';
 
 const LoginPage = () => {
   const { isPending, handleSubmitLogin } = useLogin();

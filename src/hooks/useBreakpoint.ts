@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 /**
- * Función que retorna el tamaño actual de la pantalla
+ * Función que retorna el breakpoint actual de la pantalla de acuerdo a talwindcss
  * @param width
  * @returns
  */
